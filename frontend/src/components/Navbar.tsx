@@ -49,54 +49,72 @@ export const Navbar: React.FC<NavbarProps> = ({
         
         {/* Brand */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <div style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '10px',
-            background: 'linear-gradient(135deg, #6366f1 0%, #3b82f6 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 0 15px rgba(99, 102, 241, 0.5)',
-          }}>
+          <div
+            className="brand-logo-ring"
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '10px',
+              background: 'linear-gradient(135deg, #6366f1 0%, #3b82f6 50%, #0ea5e9 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 0 20px rgba(99, 102, 241, 0.7), 0 0 40px rgba(99, 102, 241, 0.3)',
+              flexShrink: 0,
+            }}
+          >
             <ShieldAlert size={22} color="#ffffff" />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.02em', background: 'linear-gradient(to right, #ffffff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <span
+                className="shimmer-text"
+                style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.01em' }}
+              >
                 NEWTONITE
               </span>
-              <span style={{ fontSize: '0.7rem', padding: '2px 6px', background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.4)', borderRadius: '4px', color: '#a5b4fc', fontWeight: 700 }}>
+              <span style={{
+                fontSize: '0.68rem', padding: '2px 7px',
+                background: 'linear-gradient(135deg, rgba(99,102,241,0.25), rgba(0,212,255,0.15))',
+                border: '1px solid rgba(99,102,241,0.5)', borderRadius: '5px',
+                color: '#a5b4fc', fontWeight: 800, letterSpacing: '0.04em',
+                boxShadow: '0 0 12px rgba(99,102,241,0.2)',
+              }}>
                 OPS UNDER PRESSURE
               </span>
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              Operational Reliability & Concurrency Platform
+            <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', letterSpacing: '0.01em' }}>
+              Operational Reliability &amp; Concurrency Platform
             </div>
           </div>
         </div>
+
 
         {/* Center / Stats & Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           
           {/* Outbox Diagnostics Widget */}
           {outboxStats && (
-            <div style={{
+            <div className="outbox-widget" style={{
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
               padding: '6px 12px',
-              background: 'rgba(15, 23, 42, 0.8)',
+              background: 'rgba(7, 11, 20, 0.9)',
               border: '1px solid var(--border-subtle)',
               borderRadius: '8px',
               fontSize: '0.78rem',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: outboxStats.pending > 0 ? '#f59e0b' : '#10b981', display: 'inline-block' }} />
+                <span
+                  className={outboxStats.pending > 0 ? 'animate-pulse-amber' : 'animate-pulse-live'}
+                  style={{ width: '8px', height: '8px', borderRadius: '50%', background: outboxStats.pending > 0 ? '#ffb800' : '#00ffaa', display: 'inline-block', flexShrink: 0 }}
+                />
                 <span style={{ color: 'var(--text-muted)' }}>Outbox:</span>
-                <span style={{ fontWeight: 600, color: '#f8fafc' }}>{outboxStats.completed} done</span>
+                <span style={{ fontWeight: 700, color: '#f0f4ff', fontFamily: 'var(--font-mono)', fontSize: '0.76rem' }}>{outboxStats.completed} done</span>
                 {outboxStats.pending > 0 && (
-                  <span style={{ color: '#fbbf24', fontWeight: 600 }}>({outboxStats.pending} pending)</span>
+                  <span style={{ color: '#ffcb3d', fontWeight: 700, fontFamily: 'var(--font-mono)', fontSize: '0.76rem' }}>({outboxStats.pending} pending)</span>
                 )}
               </div>
               <button
@@ -111,9 +129,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   display: 'flex',
                   alignItems: 'center',
                   padding: '2px',
+                  transition: 'color 0.15s',
                 }}
+                onMouseEnter={(e) => (e.currentTarget as HTMLButtonElement).style.color = '#6366f1'}
+                onMouseLeave={(e) => (e.currentTarget as HTMLButtonElement).style.color = 'var(--text-muted)'}
               >
-                <RefreshCw size={14} className={isFlushing ? 'animate-spin' : ''} />
+                <RefreshCw size={13} className={isFlushing ? 'animate-spin' : ''} />
               </button>
             </div>
           )}

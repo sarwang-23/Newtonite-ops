@@ -152,79 +152,81 @@ export const OperationsHUD: React.FC<OperationsHUDProps> = ({
       }}>
         
         {/* Card 1: Total Operational Items */}
-        <div className="hud-metric-card" style={{ borderLeft: '3px solid #6366f1' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="hud-metric-card" data-color="indigo" style={{ borderLeft: '3px solid #6366f1' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               TRACKED ITEMS
             </span>
-            <Layers size={16} color="#6366f1" />
+            <Layers size={16} color="#6366f1" style={{ filter: 'drop-shadow(0 0 6px rgba(99,102,241,0.7))' }} />
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-            <span style={{ fontSize: '1.75rem', fontWeight: 800, color: '#f8fafc', fontFamily: 'var(--font-mono)' }}>
+            <span className="stat-number" style={{ fontSize: '2rem', fontWeight: 800, color: '#a5b4fc' }}>
               {items.length}
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
               ({unassignedCount} unassigned)
             </span>
           </div>
         </div>
 
         {/* Card 2: Urgent Incidents */}
-        <div className="hud-metric-card" style={{ borderLeft: '3px solid #f43f5e', boxShadow: urgentCount > 0 ? 'var(--shadow-neon-red)' : undefined }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#fca5a5', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="hud-metric-card" data-color="rose" style={{ borderLeft: '3px solid #ff2d55', boxShadow: urgentCount > 0 ? 'var(--shadow-neon-red)' : undefined }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#fca5a5', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               URGENT SEVERITY
             </span>
-            <Flame size={16} color="#f43f5e" />
+            <Flame size={16} color="#ff2d55" style={{ filter: 'drop-shadow(0 0 6px rgba(255,45,85,0.7))' }} />
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-            <span style={{ fontSize: '1.75rem', fontWeight: 800, color: '#fb7185', fontFamily: 'var(--font-mono)' }}>
+            <span className="stat-number" style={{ fontSize: '2rem', fontWeight: 800, color: '#ff6b8a' }}>
               {urgentCount}
             </span>
-            <span style={{ fontSize: '0.75rem', color: '#fca5a5' }}>
+            <span style={{ fontSize: '0.72rem', color: '#fca5a5' }}>
               {urgentCount > 0 ? 'Immediate action required' : 'Clear of critical fire drills'}
             </span>
           </div>
         </div>
 
         {/* Card 3: Awaiting Lead Approval */}
-        <div className="hud-metric-card" style={{ borderLeft: '3px solid #a855f7' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#d8b4fe', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="hud-metric-card" data-color="purple" style={{ borderLeft: '3px solid #b44dff' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#d8b4fe', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               AWAITING LEAD SIGN-OFF
             </span>
-            <Clock size={16} color="#a855f7" />
+            <Clock size={16} color="#b44dff" style={{ filter: 'drop-shadow(0 0 6px rgba(180,77,255,0.7))' }} />
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-            <span style={{ fontSize: '1.75rem', fontWeight: 800, color: '#c084fc', fontFamily: 'var(--font-mono)' }}>
+            <span className="stat-number" style={{ fontSize: '2rem', fontWeight: 800, color: '#c97fff' }}>
               {awaitingCount}
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
               Lead role verification gate
             </span>
           </div>
         </div>
 
         {/* Card 4: Transactional Outbox Engine */}
-        <div className="hud-metric-card" style={{ borderLeft: '3px solid #10b981' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#6ee7b7', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="hud-metric-card" data-color="emerald" style={{ borderLeft: '3px solid #00ffaa' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6ee7b7', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
               OUTBOX ASYNC WORKER
             </span>
             <button
               onClick={onFlushOutbox}
               disabled={isFlushing}
               style={{
-                background: 'rgba(16, 185, 129, 0.15)',
-                border: '1px solid rgba(16, 185, 129, 0.3)',
-                borderRadius: '4px',
-                padding: '2px 6px',
-                color: '#34d399',
+                background: 'rgba(0,255,170,0.12)',
+                border: '1px solid rgba(0,255,170,0.3)',
+                borderRadius: '5px',
+                padding: '2px 8px',
+                color: '#33ffb8',
                 cursor: 'pointer',
-                fontSize: '0.68rem',
+                fontSize: '0.67rem',
+                fontWeight: 700,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '4px',
+                transition: 'all 0.15s',
               }}
               title="Force process pending outbox queue"
             >
@@ -233,10 +235,10 @@ export const OperationsHUD: React.FC<OperationsHUDProps> = ({
             </button>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-            <span style={{ fontSize: '1.75rem', fontWeight: 800, color: '#34d399', fontFamily: 'var(--font-mono)' }}>
+            <span className="stat-number" style={{ fontSize: '2rem', fontWeight: 800, color: '#33ffb8' }}>
               {outboxStats ? outboxStats.completed : 0}
             </span>
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
               jobs done {outboxStats?.pending ? `(${outboxStats.pending} pending)` : ''}
             </span>
           </div>

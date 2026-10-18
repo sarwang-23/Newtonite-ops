@@ -191,27 +191,31 @@ export const App: React.FC = () => {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-base)' }}>
+      {/* Critical Pressure Screen Border */}
+      {/* (driven by OperationsHUD pressure state — passed via prop or CSS var) */}
+
       {/* Toast Alert */}
       {toastMessage && (
-        <div style={{
+        <div className="toast-container" style={{
           position: 'fixed',
           bottom: '24px',
           right: '24px',
           padding: '12px 20px',
-          borderRadius: '12px',
-          background: 'rgba(17, 24, 39, 0.95)',
-          border: '1px solid rgba(99, 102, 241, 0.5)',
-          color: '#f8fafc',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.25)',
+          borderRadius: '14px',
+          background: 'rgba(7, 11, 20, 0.97)',
+          border: '1px solid rgba(99, 102, 241, 0.55)',
+          color: '#f0f4ff',
+          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(99, 102, 241, 0.3)',
           fontSize: '0.84rem',
           zIndex: 100,
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
-          backdropFilter: 'blur(12px)',
+          backdropFilter: 'blur(16px)',
+          maxWidth: '380px',
         }}>
-          <Sparkles size={16} color="#6366f1" />
-          <span>{toastMessage}</span>
+          <Sparkles size={16} color="#6366f1" style={{ flexShrink: 0 }} />
+          <span style={{ fontWeight: 500 }}>{toastMessage}</span>
         </div>
       )}
 
